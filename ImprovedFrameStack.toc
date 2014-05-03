@@ -6,4 +6,6 @@
 
 ## LoadWith: Blizzard_DebugTools
 
+## SavedVariables: IFS_MaxDepth
+
 ImprovedFrameStack.lua

@@ -43,6 +43,29 @@ local searchResults = {}
 local fmtTable = {}
 
 -- Generate the path for a frame and store it in searchResults
+local function scanTables(parent, child, depth, maxDepth)
+	depth = depth + 1
+	for k, v in pairs(parent) do
+		if v == child then
+			insert(fmtTable, k)
+			return true
+		end
+	end
+
+	-- Breadth first. Limit the depth each time.
+	for i = depth+1, maxDepth do
+		for k, v in pairs(parent) do
+			if type(v) == "table" and depth < maxDepth then
+				local found = scanTables(v, child, depth, i)
+				if found then
+					insert(fmtTable, k)
+					return true
+				end
+			end
+		end
+	end
+end
+
 local function generateFramePathString(frame)
 	wipe(fmtTable)
 
@@ -66,16 +89,8 @@ local function generateFramePathString(frame)
 			break
 		end
 		
-		local foundChildKey
-		for k, v in pairs(parent) do
-			if v == child then
-				-- We found a parent[k] = child reference. Store this key as part of the path.
-				insert(fmtTable, k)
+		local foundChildKey = scanTables(parent, child, 0, IFS_MaxDepth or 3)
 
-				foundChildKey  = 1
-				break
-			end
-		end
 
 		if not foundChildKey then
 			-- We didn't find a key so that parent[key] = child, so insert STR_UNKNOWN
