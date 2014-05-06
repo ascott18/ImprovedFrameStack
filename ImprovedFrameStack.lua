@@ -35,7 +35,6 @@ local function fmt(t)
 	end
 	
 	return s
-	
 end
 
 
