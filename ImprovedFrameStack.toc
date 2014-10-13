@@ -1,6 +1,6 @@
-﻿## Interface: 50400
+﻿## Interface: 60000
 ## Title: Improved FrameStack
-## Version: 1.0
+## Version: 1.2
 ## Author: Cybeloras
 ## Notes: Resolves addresses of anonymous frames in the /framestack tooltip to their first named ancestor and the path in between.
 
