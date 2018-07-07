@@ -1,6 +1,6 @@
 # ImprovedFrameStack
 
-Now-obsolete WoW addon to improve the output of the /framestack tooltip.
+Now-obsolete WoW addon to improve the output of the /framestack tooltip. Blizzard added better functionality by default, so this addon is no longer needed.
 
 
 
